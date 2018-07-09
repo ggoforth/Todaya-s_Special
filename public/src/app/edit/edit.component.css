@@ -1,0 +1,23 @@
+.away{
+    background-color: #c1432e;
+    color: aliceblue;
+    border: #dcae1d;
+    width: 200px;
+    margin-right:10px; 
+}
+button{
+    background-color: #c1432e;
+    color: aliceblue;
+    border: #dcae1d;
+    width: 200px;
+}
+.card{
+    
+    border: 2px solid #dcae1d;
+    margin-top: 30px;
+}
+.card img{
+
+    height: 400px;
+
+}

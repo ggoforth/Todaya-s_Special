@@ -1,0 +1,75 @@
+<div class="container-fluid padding">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Have a new dish to sell today?</h2>
+      <button class="btn btn-primary fun" data-toggle="collapse" data-target="#addfood">Click Here
+
+      </button>
+      <button class="btn btn-primary" (click)="logout()">Logout</button>
+      <div id="addfood" class="collapse">
+      <form (submit)="addNew(newDish)" #newDish="ngForm" class="wrapper">
+        <div class="form-group">
+          <div *ngIf="msg" style="color: red">
+            <p *ngIf="msg.errors.dish">{{msg.errors.dish.message}}</p>
+            <p *ngIf="msg.errors.pic">{{msg.errors.pic.message}}</p>
+            <p *ngIf="msg.errors.price">{{msg.errors.price.message}}</p>
+            <p *ngIf="msg.errors.quan">{{msg.errors.quan.message}}</p>
+            <p *ngIf="msg.errors.desc">{{msg.errors.desc.message}}</p>
+            <p *ngIf="msg.errors.exp">{{msg.errors.exp.message}}</p>
+          </div>
+          <p *ngIf="exist" style="color: red">{{exist}}</p>
+
+          <br> Dish name :
+          <input class="form-control" type="text" name="dish" ngModel>
+          <br> Picture url:
+          <input class="form-control" type="text" name="pic" ngModel>
+          <br> Price:
+          <input class="form-control" type="text" name="price" ngModel>
+          <br> Zip Code:
+          <input class="form-control" type="text" name="zip" ngModel>
+          <br> Quantity:
+          <input class="form-control" type="text" name="quan" ngModel>
+          <br> Description:
+          <input class="form-control" type="text" name="desc" ngModel>
+          <br> Expiration Date:
+          <input class="form-control" type="date" name="exp" ngModel>
+          <br>
+          <input class="away btn btn-primary" type="submit" value="Sell Dish">
+      
+        </div>
+        
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container-fluid padding">
+  <h2>Your Posts</h2>
+  <div class="row padding">
+    <div class="col-md-4" *ngFor="let food of foods">
+      <div class="card">
+        <img class="card-img-top" [src]="food.pic">
+        <div class="card-body">
+          <h4 class="card-title">{{food.dish}}</h4>
+          <p class="card-text">{{food.desc}}</p>
+          <button (click)="edit(food._id)" class="btn-outline-secondary">Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 
+<div class="result">
+<div class="displayItem" *ngFor="let food of foods">
+  <div style="border: 3px solid #97DDFC; width: 400px; border-radius: 20px;">
+    <p>Dish name: {{food.dish}}</p>
+    <img [src]="food.pic" alt="food" width=350, height=250>
+    <button class="btn btn-primary" (click)="edit(food._id)">Edit</button>
+  </div>
+</div>
+</div> -->

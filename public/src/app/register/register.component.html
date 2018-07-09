@@ -1,0 +1,45 @@
+<div class="container-fluid padding">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Show off your cooking skills!!</h2>
+            <form (submit)="register(regform)" #regform="ngForm">
+                <div class="form-group">
+
+                    <label for="firstname">First Name</label>
+                    <input placeholder="Enter First Name" class="form-control" type="text" name="fname" ngModel>
+                    <br>
+
+                    <label for="lastname">Last Name</label>
+                    <input placeholder="Enter Last Name" class="form-control" type="text" name="lname" ngModel>
+                    <br>
+
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email"
+                        ngModel>
+
+
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" ngModel>
+
+                        <label for="Specialty">Specialty</label>
+                        <input placeholder="Enter Specialty" class="form-control" type="text" name="spec" ngModel>
+                        <br>
+                    </div>
+
+                    <div *ngIf="msg" style="color:#c1432e" class="wrapper">
+                        <p *ngIf="msg.errors.fname">{{msg.errors.fname.message}}</p>
+                        <p *ngIf="msg.errors.lname">{{msg.errors.lname.message}}</p>
+                        <p *ngIf="msg.errors.email">{{msg.errors.email.message}}</p>
+                        <p *ngIf="msg.errors.password">{{msg.errors.password.message}}</p>
+                        <p *ngIf="msg.errors.spec">{{msg.errors.spec.message}}</p>
+                    </div>
+                    <p *ngIf="invalid" style="color: #c1432e">{{invalid}}</p>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div> 

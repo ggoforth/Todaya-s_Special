@@ -1,0 +1,12 @@
+.padding{
+    border-top:  2px solid #b4b4b4;
+    width: 95%;
+    margin-top: .3rem;
+    margin-bottom: 1rem; 
+}
+button{
+    background-color: #c1432e;
+    color: aliceblue;
+    border: #dcae1d;
+    width: 200px;
+}

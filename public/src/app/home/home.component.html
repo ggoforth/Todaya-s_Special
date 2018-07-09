@@ -1,0 +1,70 @@
+<div id="slides" class="carousel slide" data-ride="carousel">
+    <ul class="carousel-indicators">
+        <li data-target="#slides" data-slide-to="0" class="active"></li>
+        <li data-target="#slides" data-slide-to="1"></li>
+        <li data-target="#slides" data-slide-to="2"></li>
+    </ul>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="../assets/img/organic.jpg" alt="">
+            <div class="carousel-caption">
+                <h4 class="display-2">Find unique tastes and experiences around your area.</h4>
+                <form (submit)="search(zipcode)" #zipcode="ngForm">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search by Zip Code" aria-label="Search" name="zipcode" ngModel>
+                    <input type="submit" class="btn-primary btn-outline-light btn-lg" value ="Search">
+                </form>
+
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="../assets/img/halal-food-banner.jpg" alt="">
+        </div>
+        <div class="carousel-item">
+            <img src="../assets/img/banner.jpg" alt="">
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row jumbotron">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+            <p class="lead">Buy at your own risk :) We cannot help if you get sick. For more information please visit the document by clicking the button.</p>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
+            <a href="https://www.chlpi.org/wp-content/uploads/2013/12/FINAL_Cottage-Food-Laws-Report_2013.pdf"><button type="button" class="btn btn-outline-secondary btn-lg">More Info</button></a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid padding">
+    <div class="row welcome text-center">
+        <div class="col-12">
+            <h1 class="display-4"> Tastes around you</h1>
+        </div>
+        <hr>
+    </div>
+</div>
+<div class="container-fluid padding">
+    <div class="row padding" *ngIf="display">
+        <div class="col-md-4" *ngFor="let food of foods">
+            <div class="card">
+                <img class="card-img-top" [src]="food.pic">
+                <div class="card-body">
+                    <h4 class="card-title">{{food.dish}}</h4>
+                    <p class="card-text">{{food.desc}}</p>
+                    <button (click)="showDetail(food._id)" class="btn-outline-secondary">Show More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row padding" *ngIf="findFood">
+            <div class="col-md-4" *ngFor="let food of searchFoods">
+                <div class="card">
+                    <img class="card-img-top" [src]="food.pic">
+                    <div class="card-body">
+                        <h4 class="card-title">{{food.dish}}</h4>
+                        <p class="card-text">{{food.desc}}</p>
+                        <button (click)="showDetail(food._id)" class="btn-outline-secondary">Show More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

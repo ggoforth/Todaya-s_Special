@@ -1,0 +1,15 @@
+img {
+    height: 550px;
+    width: 100%;
+   
+    border: #dcae1d solid 20px;
+}
+button{
+    background-color: #c1432e;
+    border: #dcae1d;
+    width: 100px;
+}
+.padding{
+    padding: 1rem;
+    
+}

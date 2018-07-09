@@ -1,0 +1,56 @@
+<div class="edit" *ngIf="food">
+  <div class="container-fluid padding">
+    <h2>Make changes here:</h2>
+    <div class="row padding">
+      <div class="col-md-4" *ngIf="food">
+        <div class="card">
+          <img class="card-img-top" [src]="food.pic">
+          <div class="card-body">
+            <h4 class="card-title">{{food.dish}}</h4>
+            <p class="card-text">{{food.desc}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid padding">
+    <div class="row">
+      <div class="col-xs-12">
+        <div *ngIf="msg" style="color: red">
+          <p *ngIf="msg.errors.dish">{{msg.errors.dish.message}}</p>
+          <p *ngIf="msg.errors.pic">{{msg.errors.pic.message}}</p>
+          <p *ngIf="msg.errors.price">{{msg.errors.price.message}}</p>
+          <p *ngIf="msg.errors.quan">{{msg.errors.quan.message}}</p>
+          <p *ngIf="msg.errors.desc">{{msg.errors.desc.message}}</p>
+          <p *ngIf="msg.errors.exp">{{msg.errors.exp.message}}</p>
+        </div>
+        <p *ngIf="exist" style="color: red">{{exist}}</p>
+        <form (submit)="editDish(eDish)" #newDish="ngForm" class="wrapper">
+            <div class="form-group">
+          <br> Dish name :
+          <input class="form-control" type="text" name="dish" [(ngModel)]="food.dish">
+          <br> Picture url:
+          <input class="form-control" type="text" name="pic" [(ngModel)]="food.pic">
+          <br> Price:
+          <input class="form-control" type="text" name="price" [(ngModel)]="food.price">
+          <br> Zip Code:
+          <input class="form-control" type="text" name="zip" [(ngModel)]="food.zip">
+          <br> Quantity:
+          <input class="form-control" type="text" name="quan" [(ngModel)]="food.quan">
+          <br> Description:
+          <input class="form-control" type="text" name="desc" [(ngModel)]="food.desc">
+          <br> Expiration Date:
+          <input class="form-control" type="date" name="exp" [(ngModel)]="food.exp">
+          <br>
+          <input class="away btn btn-primary" type="submit" value="Edit Dish">
+          <button class="away btn btn-primary" (click)="delete(food._id)">Delete Dish</button>
+          <button class="btn btn-primary" (click)="cancel(food.cook.name)">Go Back</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</div>
