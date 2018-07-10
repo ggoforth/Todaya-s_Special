@@ -42,6 +42,10 @@ search(zipcode){
 }
 editDish(id, dish){
   return this._http.put('/edit/' + id, dish)
+}
+  send(){
+    return this._http.get('/send')
+  }
 
 }
 

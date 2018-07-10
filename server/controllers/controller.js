@@ -2,10 +2,32 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Food = mongoose.model('Food');
 const bcrypt = require('bcrypt');
-// const session = require('express-session');
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'codingschooltesting@gmail.com',
+        pass: 'codingtesting'
+    }
+});
+var mailOptions = {
+    from: 'codingschooltesting@gmail.com',
+    to: 'jasica620@gmail.com',
+    subject: 'Sending Email using Node.js',
+    text: 'Controller works'
+};
 
 
 module.exports = {
+    sendmail: function (req, res) {
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+    },
     register: function (req, res) {
         console.log(req.body)
         User.find({ email: req.body.email }, function (err, user) {

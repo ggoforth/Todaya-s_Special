@@ -11,6 +11,7 @@ module.exports = function(app){
     app.delete('/delete/:id', user.deleteDish)
     app.get('/search/:zipcode', user.search)
     app.put('/edit/:id', user.edit)
+    app.get('/send', user.sendmail)
 
 
     
