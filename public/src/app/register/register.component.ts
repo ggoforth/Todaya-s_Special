@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
     this._taskService.register(regform.value).subscribe(res => {
       console.log("show", res)
       if(res['Status'] == true){
+        console.log(res)
         this._router.navigate(['/new/' + res['user']['fname']]);
       } else {
         this.invalid = res['err']

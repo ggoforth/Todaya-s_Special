@@ -47,8 +47,8 @@ export class EditComponent implements OnInit {
 
   editDish(){
     this._taskService.editDish(this.id, this.food).subscribe(res => {
-      this._router.navigate(['/new/' + this.food.cook.name])
-      console.log(res)
+      console.log('newfood', res)
+      this._router.navigate(['/new/' + res['user']['fname']])
     })
   }
 

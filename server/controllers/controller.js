@@ -10,17 +10,11 @@ var transporter = nodemailer.createTransport({
         pass: 'codingtesting'
     }
 });
-var mailOptions = {
-    from: 'codingschooltesting@gmail.com',
-    to: 'jasica620@gmail.com',
-    subject: 'Sending Email using Node.js',
-    text: 'Controller works'
-};
-
 
 module.exports = {
     sendmail: function (req, res) {
-        transporter.sendMail(mailOptions, function (error, info) {
+        console.log(req.body)
+        transporter.sendMail(req.body, function (error, info) {
             if (error) {
                 console.log(error);
             } else {
@@ -115,10 +109,10 @@ module.exports = {
             var data = user.food;
             if (err) {
                 console.log('somethig went worng');
-                res.json({ message: "Error", error: err })
+                res.json({ Status: false, message: "Error", error: err })
             } else {
-                console.log(data);
-                res.json({ message: "Success", food: data });
+                // console.log(data);
+                res.json({ Status: true, message: "Success", food: data });
             }
 
         })
@@ -200,6 +194,7 @@ module.exports = {
                 console.log('somethig went worng');
                 res.json({ message: "Error", error: err })
             } else {
+                console.log(dish)
                 User.findById({ _id: req.session.user.id }, function (err, user) {
                     if (err) {
                         console.log("can't find user");
@@ -207,11 +202,12 @@ module.exports = {
                     } else {
                         var newFood = user.food;
                         for (var i = 0; i < newFood.length; i++) {
-                            console.log(newFood[i])
-                            if (newFood[i]._id == req.params.id){
+                            // console.log(newFood[i])
+                            if (newFood[i]._id == req.body._id){
                                 newFood[i] = dish
                             }
                         }
+                        // console.log('NEWFOOD', newFood)
                         User.findByIdAndUpdate({ _id: req.session.user.id }, { $set: {food : newFood} }, function(err, user){
                             if (err){
                                 console.log("cannot update")
@@ -225,86 +221,6 @@ module.exports = {
                 })
             }
         })
-    },
-
-
-
-
-
-
-
-
-
-
-
-
-    getPet: function (req, res) {
-        Pet.find({}, function (err, pet) {
-            if (err) {
-                console.log("Returned error", err);
-                // respond with JSON
-                res.json({ message: "Error", error: err })
-            }
-            else {
-                // respond with JSON
-                res.json({ data: pet })
-            }
-        })
-    },
-    deletePet: function (req, res) {
-        console.log(req.params.id)
-        Pet.findByIdAndRemove({ _id: req.params.id }, function (err) {
-            if (err) {
-                console.log('somethig went worng');
-                res.json({ message: "Error", error: err })
-            } else {
-                console.log('successfully adopted this pet');
-                res.json({ message: "Success adoption" });
-            }
-        })
-    },
-
-    updatePet: function (request, response) {
-        // console.log(request.body)
-        Pet.findByIdAndUpdate({ _id: request.body._id }, { $set: request.body }, function (err, pet) {
-            if (err) {
-                console.log('somethig went worng');
-                response.json({ message: "Error", error: err })
-            } else {
-                console.log('successfully updated a user', pet);
-                response.json({ message: "Success update" });
-            }
-
-        })
-    },
-    showPet: function (req, res) {
-        console.log(req.params)
-        Pet.findOne({ _id: req.params.id }, function (err, pet) {
-            var data = pet;
-
-            if (err) {
-                console.log('somethig went worng');
-                res.json({ message: "Error", error: err })
-            } else {
-                console.log(data);
-                res.json({ message: "Success", data: pet });
-            }
-
-        })
-    },
-    like: function (req, res) {
-        console.log(req.body)
-        Pet.findByIdAndUpdate({ _id: req.body.id }, { $inc: { "likes": 1 } }, function (err, pet) {
-            if (err) {
-                console.log('somethig went worng');
-                res.json({ message: "Error", error: err })
-            } else {
-                console.log('successfully liked');
-                res.json({ message: "Success update" });
-            }
-
-        })
-    },
-    
+    }
 
 }

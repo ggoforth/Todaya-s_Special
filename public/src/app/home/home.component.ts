@@ -45,17 +45,6 @@ export class HomeComponent implements OnInit {
     this._router.navigate(['/food/', id])
   }
 
-  // goRegister(){
-  //   this._router.navigate(['/register'])
-  // }
-
-  // goLogin(){
-  //   this._router.navigate(['/login'])
-  // }
-  // goHome(){
-  //   this._router.navigate(['/home'])
-  // }
-
   search(zipcode: NgForm){
     console.log(zipcode.value)
     this._taskService.search(zipcode.value.zipcode).subscribe(res => {

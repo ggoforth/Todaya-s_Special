@@ -58,9 +58,13 @@ export class NewComponent implements OnInit {
 
   showDish(){
     this._taskService.showDish().subscribe(data => {
-      this.foods = data['food']
-      this.socket.emit('update')
-      console.log("success", data)
+      if (data['Status'] == true){
+        this.foods = data['food']
+        this.socket.emit('update')
+        console.log("success", data)
+      } else {
+        this._router.navigate(['/'])
+      }
     })
   }
 

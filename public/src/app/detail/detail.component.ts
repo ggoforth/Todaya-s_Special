@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TasksService } from '../tasks.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { formatDate } from '@angular/common';
+
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -9,6 +11,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class DetailComponent implements OnInit {
   food: any;
   id: any;
+  date: any;
   likes: Number;
   button: Boolean;
 
@@ -29,12 +32,13 @@ export class DetailComponent implements OnInit {
     console.log(this.id)
     this._taskService.getOneDish(this.id).subscribe(res => {
       this.food = res['data'];
+      this.date = formatDate(this.food['exp'], 'mediumDate', 'en-US');
+
       console.log("show", res)
     })
 
   }
-  chatClicked(cook){
-    this._router.navigate(['/chat/', cook._id])
-
+  chatClicked(food){
+    this._router.navigate(['/chat/', food._id])
   }
 }
