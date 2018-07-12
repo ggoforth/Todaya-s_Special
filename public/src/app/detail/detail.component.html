@@ -1,16 +1,3 @@
-
-
-    <!-- <div *ngIf="food" style="border: 1px solid salmon; width: 600px">
-        <p>Dish name: {{food.dish}}</p>
-        <img [src]="food.pic" alt="food" width=350, height=250>
-        <p> Price: {{food.price}}</p>
-        <p>Quantity: {{food.quan}}</p>
-        <p>Description: {{food.desc}}</p>
-        <p>Expiration Date: {{food.exp}}</p>
-        <button (click)="chatClicked(food.cook)">Chat</button>
-    </div> -->
-
-
 <div class="container-fluid padding">
     <div class="row padding" *ngIf="food">
         <div class="col-lg-6">
@@ -21,9 +8,9 @@
             <p> Price: {{food.price}}</p>
             <p>Quantity: {{food.quan}}</p>
             <p>Description: {{food.desc}}</p>
-            <p>Expiration Date: {{food.exp}}</p>
+            <p>Expiration Date: {{date}}</p>
             <br>
-            <button (click)="chatClicked(food.cook)" class="btn btn-primary">Buy</button>
+            <button (click)="chatClicked(food)" class="btn btn-primary">Buy</button>
         </div>
     
     </div>

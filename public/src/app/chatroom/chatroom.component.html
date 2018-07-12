@@ -1,4 +1,10 @@
-<form (submit)='send()'>
-  <input type='submit'>
+
+
+<form (submit)='send(myform)' #myform = "ngForm">
+    <p> {{ mailOptions | json }} </p>
+  Your Email: <input type='text' name='mail' ngModel>
+  Message: <textarea type='text' name='text' ngModel></textarea>
+  
+  <input type='submit' value='Send Seller Email'>
 </form>
 
